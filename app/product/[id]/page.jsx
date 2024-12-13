@@ -45,7 +45,7 @@ export default async function ProductPage({ params }) {
 }
 
 export async function generateMetadata({ params }) {
-  const { id } = params;
+  const { id } = await params;
 
   const product = await getProductById({ id });
 

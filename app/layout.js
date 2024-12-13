@@ -14,6 +14,11 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "Product Hunter",
   description: "Browse through various products",
+  openGraph: {
+    images: [
+      "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    ],
+  },
 };
 
 export default function RootLayout({ children }) {
