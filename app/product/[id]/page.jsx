@@ -1,6 +1,5 @@
 import { getProductById } from "@/app/api/route";
 import Navbar from "@/app/components/Navbar";
-import Meta from "@/app/components/Meta";
 
 export default async function ProductPage({ params }) {
   const { id } = params;
@@ -16,11 +15,6 @@ export default async function ProductPage({ params }) {
 
   return (
     <>
-      <Meta
-        title={product.title}
-        desc={product.description}
-        imageUrl={product.images[0]}
-      />
       <Navbar />
       <div className="container w-full h-full px-0 py-10 mx-auto lg:px-10">
         <div className="flex flex-col w-full h-full mt-10 md:flex-row">
@@ -56,7 +50,7 @@ export async function generateMetadata({ params }) {
       title: product.title,
       description: product.description,
       images: [product.images[0]],
-      url: `https://yourdomain.com/products/${id}`,
+      url: `https://seo-next-pink.vercel.app/products/${id}`,
     },
     twitter: {
       card: "summary_large_image",
