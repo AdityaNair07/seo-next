@@ -16,13 +16,13 @@ const HomePage = async () => {
 
   return (
     <>
-      <Meta
+      {/* <Meta
         title={"Product Hunter"}
         desc={"Browse through various products"}
         imageUrl={
           "https://cdn.pixabay.com/photo/2019/04/26/07/14/store-4156934_1280.png"
         }
-      />
+      /> */}
       <Navbar />
       <div className="container w-full h-full px-0 py-10 mx-auto lg:px-10">
         <div className="container w-full h-full px-0 py-10 mx-auto lg:px-10">
