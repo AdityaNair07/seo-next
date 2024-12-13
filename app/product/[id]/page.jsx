@@ -1,29 +1,15 @@
-"use client";
-
-// import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-
 import { getProductById } from "@/app/api/route";
 import Navbar from "@/app/components/Navbar";
 import Meta from "@/app/components/Meta";
 
-const ProductPage = () => {
-  // const { id } = useParams();
-  const id = 1;
-  const [product, setProduct] = useState(null);
-
-  useEffect(() => {
-    if (id) {
-      getProductById({ id: id })
-        .then((data) => setProduct(data))
-        .catch((error) => console.error(error));
-    }
-  }, [id]);
+export default async function ProductPage({ params }) {
+  const { id } = params;
+  const product = await getProductById({ id });
 
   if (!product) {
     return (
       <div className="w-full h-full pt-20 text-3xl font-semibold text-center">
-        Loading...
+        Product not found
       </div>
     );
   }
@@ -56,6 +42,27 @@ const ProductPage = () => {
       </div>
     </>
   );
-};
+}
 
-export default ProductPage;
+export async function generateMetadata({ params }) {
+  const { id } = params;
+
+  const product = await getProductById({ id });
+
+  return {
+    title: product.title,
+    description: product.description,
+    openGraph: {
+      title: product.title,
+      description: product.description,
+      images: [product.images[0]],
+      url: `https://yourdomain.com/products/${id}`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: product.title,
+      description: product.description,
+      images: [product.images[0]],
+    },
+  };
+}

@@ -1,17 +1,10 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import ProductCard from "./components/ProductCard";
 import { getProducts } from "./api/route";
 import Navbar from "./components/Navbar";
 import Meta from "./components/Meta";
 
-const HomePage = () => {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    getProducts().then((data) => setProducts(data));
-  }, []);
+const HomePage = async () => {
+  const products = await getProducts();
 
   if (!products) {
     return (
