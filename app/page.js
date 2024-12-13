@@ -37,4 +37,31 @@ const HomePage = async () => {
   );
 };
 
+export async function generateMetadata() {
+  return {
+    title: "Product Hunter",
+    description: "Browse through various products",
+    openGraph: {
+      title: "Product Hunter",
+      description: "Browse through various products",
+      images: [
+        {
+          url: "https://cdn.pixabay.com/photo/2019/04/26/07/14/store-4156934_1280.png",
+          // width: 1200,
+          // height: 630,
+        },
+      ],
+      url: "https://seo-next-pink.vercel.app/",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Product Hunter",
+      description: "Browse through various products",
+      images: [
+        "https://cdn.pixabay.com/photo/2019/04/26/07/14/store-4156934_1280.png",
+      ],
+    },
+  };
+}
+
 export default HomePage;
