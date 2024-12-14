@@ -1,6 +1,29 @@
 import { getProductById } from "@/app/api/route";
 import Navbar from "@/app/components/Navbar";
 
+export async function generateMetadata({ params }) {
+  const { id } = await params;
+
+  const product = await getProductById({ id });
+
+  return {
+    title: product.title,
+    description: product.description,
+    openGraph: {
+      title: product.title,
+      description: product.description,
+      images: [product.images[0]],
+      url: `https://seo-next-pink.vercel.app/products/${id}`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: product.title,
+      description: product.description,
+      images: [product.images[0]],
+    },
+  };
+}
+
 export default async function ProductPage({ params }) {
   const { id } = params;
   const product = await getProductById({ id });
@@ -36,27 +59,4 @@ export default async function ProductPage({ params }) {
       </div>
     </>
   );
-}
-
-export async function generateMetadata({ params }) {
-  const { id } = await params;
-
-  const product = await getProductById({ id });
-
-  return {
-    title: product.title,
-    description: product.description,
-    openGraph: {
-      title: product.title,
-      description: product.description,
-      images: [product.images[0]],
-      url: `https://seo-next-pink.vercel.app/products/${id}`,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: product.title,
-      description: product.description,
-      images: [product.images[0]],
-    },
-  };
 }
