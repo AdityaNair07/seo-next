@@ -1,6 +1,7 @@
 import ProductCard from "./components/ProductCard";
-import { getProducts } from "./api/route";
+import { getProducts, getProductsPage } from "./api/route";
 import Navbar from "./components/Navbar";
+import PaginationControls from "./components/PaginationControls";
 
 export async function generateMetadata() {
   return {
@@ -29,10 +30,19 @@ export async function generateMetadata() {
   };
 }
 
-const HomePage = async () => {
-  const products = await getProducts();
+const HomePage = async ({ searchParams }) => {
+  const { limit, page } = searchParams;
 
-  if (!products) {
+  console.log("====================================");
+  console.log(page, limit);
+  console.log("====================================");
+
+  const products = await getProductsPage({
+    limit: limit || 10,
+    pageNum: page || 1,
+  });
+
+  if (!products.products) {
     return (
       <div className="w-full h-full pt-20 text-3xl font-semibold text-center">
         Loading...
@@ -46,9 +56,10 @@ const HomePage = async () => {
       <div className="container w-full h-full px-0 py-10 mx-auto lg:px-10">
         <div className="container w-full h-full px-0 py-10 mx-auto lg:px-10">
           <div className="grid grid-cols-1 gap-3 md:grid-cols-3 sm:grid-cols-2 lg:grid-cols-4 ">
-            {products?.map((data) => {
+            {products.products?.map((data) => {
               return <ProductCard data={data} key={data?.id} />;
             })}
+            <PaginationControls total={products.total} />
           </div>
         </div>
       </div>

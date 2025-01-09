@@ -15,6 +15,24 @@ export const getProducts = async () => {
   }
 };
 
+export const getProductsPage = async ({ limit, pageNum }) => {
+  try {
+    const res = await fetch(
+      `${BASE_URL}?limit=${limit}&skip=${pageNum}&select=title,price`
+    );
+
+    if (!res.ok) throw new Error("Error! status: ", res.status, res.statusText);
+
+    const data = await res.json();
+
+    console.log("page data: ", data);
+
+    return data;
+  } catch (error) {
+    console.error("Error getting page data ", error);
+  }
+};
+
 export const getProductById = async ({ id }) => {
   try {
     const res = await fetch(`${BASE_URL}/${id}`);
