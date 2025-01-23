@@ -1,5 +1,6 @@
 import { getProductById } from "@/app/api/route";
 import Navbar from "@/app/components/Navbar";
+import Head from "next/head";
 import { SocialIcon } from "react-social-icons";
 
 export async function generateMetadata({ params }) {
@@ -14,6 +15,7 @@ export async function generateMetadata({ params }) {
       title: product.title,
       description: product.description,
       images: [product.images[0]],
+      type: "article",
       url: `https://seo-next-pink.vercel.app/products/${id}`,
     },
     twitter: {
@@ -39,7 +41,25 @@ export default async function ProductPage({ params }) {
 
   return (
     <>
+      <Head>
+        <title>{product.title}</title>
+        <meta name="description" content={product.description} />
+        <meta property="og:title" content={product.title} />
+        <meta property="og:description" content={product.description} />
+        <meta property="og:image" content={product.images[0]} />
+        <meta
+          property="og:url"
+          content={`https://seo-next-pink.vercel.app/products/${id}`}
+        />
+        <meta property="og:type" content="product" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={product.title} />
+        <meta name="twitter:description" content={product.description} />
+        <meta name="twitter:image" content={product.images[0]} />
+      </Head>
+
       <Navbar />
+
       <div className="container w-full h-full px-0 py-10 mx-auto lg:px-10">
         <div className="flex flex-col w-full h-full mt-10 md:flex-row">
           <div className="w-full md:w-1/2">
