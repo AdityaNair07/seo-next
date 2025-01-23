@@ -80,7 +80,7 @@ export default async function ProductPage({ params }) {
               <SocialIcon
                 className="icon_social"
                 target="_blank"
-                url={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
+                url={`https://twitter.com/intent/post?url=${encodeURIComponent(
                   `https://seo-next-pink.vercel.app/product/${id}`
                 )}&text=${encodeURIComponent(
                   "Check out this product!"
