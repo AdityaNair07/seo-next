@@ -81,7 +81,7 @@ export default async function ProductPage({ params }) {
                 className="icon_social"
                 target="_blank"
                 url={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
-                  `https://seo-next-pink.vercel.app/products/${id}`
+                  `https://seo-next-pink.vercel.app/product/${id}`
                 )}&text=${encodeURIComponent(
                   "Check out this product!"
                 )}&hashtags=${encodeURIComponent("ProductHunter,Product")}`}
@@ -94,7 +94,7 @@ export default async function ProductPage({ params }) {
                   .replace(/-/g, " ")
                   .replace(/(\w)(\w*)/g, function (g0, g1, g2) {
                     return g1.toUpperCase() + g2.toLowerCase();
-                  })} on Product Hunter, here is the link https://seo-next-pink.vercel.app/products/${id}`}
+                  })} on Product Hunter, here is the link https://seo-next-pink.vercel.app/product/${id}`}
                 style={{ height: 35, width: 35 }}
               />
             </div>
