@@ -23,6 +23,7 @@ export async function generateMetadata({ params }) {
       title: product.title,
       description: product.description,
       images: [product.images[0]],
+      image: [product.images[0]],
     },
   };
 }
@@ -75,16 +76,28 @@ export default async function ProductPage({ params }) {
             </div>
             <h2 className="text-xl font-bold">{product.title}</h2>
             <p className="text-lg">{product.description}</p>
-            <SocialIcon
-              className="icon_social"
-              target="_blank"
-              url={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
-                `https://seo-next-pink.vercel.app/products/${id}`
-              )}&text=${encodeURIComponent(
-                "Check out this product!"
-              )}&hashtags=${encodeURIComponent("ProductHunter,Product")}`}
-              style={{ height: 35, width: 35 }}
-            />
+            <div className="flex gap-2 items-center">
+              <SocialIcon
+                className="icon_social"
+                target="_blank"
+                url={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
+                  `https://seo-next-pink.vercel.app/products/${id}`
+                )}&text=${encodeURIComponent(
+                  "Check out this product!"
+                )}&hashtags=${encodeURIComponent("ProductHunter,Product")}`}
+                style={{ height: 35, width: 35 }}
+              />
+              <SocialIcon
+                className="icon_social"
+                target="_blank"
+                url={`https://api.whatsapp.com/send?text=Get this product ${product.title
+                  .replace(/-/g, " ")
+                  .replace(/(\w)(\w*)/g, function (g0, g1, g2) {
+                    return g1.toUpperCase() + g2.toLowerCase();
+                  })} on Product Hunter, here is the link https://seo-next-pink.vercel.app/products/${id}`}
+                style={{ height: 35, width: 35 }}
+              />
+            </div>
           </div>
         </div>
       </div>
