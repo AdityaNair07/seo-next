@@ -1,5 +1,6 @@
 import { getProductById } from "@/app/api/route";
 import Navbar from "@/app/components/Navbar";
+import { SocialIcon } from "react-social-icons";
 
 export async function generateMetadata({ params }) {
   const { id } = await params;
@@ -54,6 +55,16 @@ export default async function ProductPage({ params }) {
             </div>
             <h2 className="text-xl font-bold">{product.title}</h2>
             <p className="text-lg">{product.description}</p>
+            <SocialIcon
+              className="icon_social"
+              target="_blank"
+              url={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
+                `https://seo-next-pink.vercel.app/products/${id}`
+              )}&text=${encodeURIComponent(
+                "Check out this product!"
+              )}&hashtags=${encodeURIComponent("ProductHunter,Product")}`}
+              style={{ height: 35, width: 35 }}
+            />
           </div>
         </div>
       </div>
